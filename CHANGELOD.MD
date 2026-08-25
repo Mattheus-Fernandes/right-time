@@ -24,6 +24,12 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/) e o proj
 * Relacionamento entre clientes e seus agendamentos.
 * Configuração inicial para PostgreSQL e H2.
 * Criação de queries de insert `AppointmentQuery`, `CustomerQuery`, `CommitmentQuery` e `AppointmentNotificationQuery`.
+* Criação de DAO para insert `CustomerDAO`, `AppointmentDAO`, `AppointmentNotificationDAO` e `CommitmentDAO`
+
+### Modificado
+* Correção de modificadores de acesso `AppointmentQuery`, `CustomerQuery`, `CommitmentQuery` e `AppointmentNotificationQuery`.
+* Removido generatevalue das entidades `Customer`, `Appointment`, `AppointmentNotification` e `Commitment`
+
 
 ## [1.0.0]
 
