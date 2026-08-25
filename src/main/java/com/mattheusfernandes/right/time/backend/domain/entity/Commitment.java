@@ -18,7 +18,6 @@ import java.util.UUID;
 public class Commitment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "title", nullable = false)

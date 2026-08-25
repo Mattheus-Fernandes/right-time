@@ -2,10 +2,11 @@ package com.mattheusfernandes.right.time.backend.utils.query;
 
 public class AppointmentQuery {
 
-    private static final String INSERT_NEW_APPOINTMENT = "Appointment.insertNewAppointment";
+    public static final String INSERT_NEW_APPOINTMENT = "Appointment.insertNewAppointment";
 
-    private static final String INSERT_NEW_APPOINTMENT_QUERY = """
+    public static final String INSERT_NEW_APPOINTMENT_QUERY = """
             INSERT INTO appointments(
+                id,
                 customer_id,
                 appointment_date,
                 start_time,
@@ -16,6 +17,7 @@ public class AppointmentQuery {
                 appointment_status
             )
             VALUES(
+                :id,
                 :customer_id,
                 :appointment_date,
                 :start_time,

@@ -2,10 +2,11 @@ package com.mattheusfernandes.right.time.backend.utils.query;
 
 public class CommitmentQuery {
 
-    private static final String INSERT_NEW_COMMITMENT = "Commitment.insertNewCommitment";
+    public static final String INSERT_NEW_COMMITMENT = "Commitment.insertNewCommitment";
 
-    private static final String INSERT_NEW_COMMITMENT_QUERY = """
+    public static final String INSERT_NEW_COMMITMENT_QUERY = """
             INSERT INTO commitments (
+                id,
                 title,
                 commitment_date,
                 start_time,
@@ -13,6 +14,7 @@ public class CommitmentQuery {
                 marking_color
             )
             VALUES(
+                :id,
                 :title,
                 :commitment_date,
                 :start_time,
