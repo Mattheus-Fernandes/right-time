@@ -25,6 +25,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/) e o proj
 * Configuração inicial para PostgreSQL e H2.
 * Criação de queries de insert `AppointmentQuery`, `CustomerQuery`, `CommitmentQuery` e `AppointmentNotificationQuery`.
 * Criação de DAO para insert `CustomerDAO`, `AppointmentDAO`, `AppointmentNotificationDAO` e `CommitmentDAO`
+* Implmentado repository para `Customer`
 
 ### Modificado
 * Correção de modificadores de acesso `AppointmentQuery`, `CustomerQuery`, `CommitmentQuery` e `AppointmentNotificationQuery`.
