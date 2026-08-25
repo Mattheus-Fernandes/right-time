@@ -23,6 +23,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/) e o proj
 * Enum `NotificationStatus` para identificação do status do envio da notificação.
 * Relacionamento entre clientes e seus agendamentos.
 * Configuração inicial para PostgreSQL e H2.
+* Criação de queries de insert `AppointmentQuery`, `CustomerQuery`, `CommitmentQuery` e `AppointmentNotificationQuery`.
 
 ## [1.0.0]
 
