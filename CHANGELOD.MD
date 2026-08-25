@@ -15,10 +15,12 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/) e o proj
 * Entidade `Customer` para gerenciamento de clientes.
 * Entidade `Appointment` para gerenciamento de agendamentos de clientes.
 * Entidade `Commitment` para gerenciamento de compromissos.
+* Entidade `AppointmentNotification` para gerenciamento do status da notificação.
 * Enum `AppointmentService` para padronização dos serviços.
 * Enum `AppointmentStatus` para controle do status dos agendamentos.
 * Enum `MarkingColor` para padronização das cores dos eventos.
 * Enum `MarkingType` para identificação do tipo de marcação.
+* Enum `NotificationStatus` para identificação do status do envio da notificação.
 * Relacionamento entre clientes e seus agendamentos.
 * Configuração inicial para PostgreSQL e H2.
 
