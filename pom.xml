@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mattheusfernandes.right-time-backend</groupId>
     <artifactId>right-time-backend</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>quarkus</packaging>
 
     <properties>
