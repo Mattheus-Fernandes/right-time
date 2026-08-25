@@ -1,5 +1,6 @@
 package com.mattheusfernandes.right.time.backend.domain.entity;
 
+import com.mattheusfernandes.right.time.backend.utils.query.CustomerQuery;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,12 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedNativeQueries(
+        @NamedNativeQuery(
+                name = CustomerQuery.INSERT_NEW_CUSTOMER,
+                query = CustomerQuery.INSERT_NEW_CUSTOMER_QUERY
+        )
+)
 public class Customer {
 
     @Id
