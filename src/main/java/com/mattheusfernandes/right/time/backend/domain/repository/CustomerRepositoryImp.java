@@ -18,4 +18,14 @@ public class CustomerRepositoryImp implements CustomerRepository {
         return customerDAO.insertNewCustomer(customer);
     }
 
+    @Override
+    public boolean existsByFullname(String name, String lastname) {
+        return customerDAO.existsByFullname(name, lastname);
+    }
+
+    @Override
+    public boolean existsByPhone(String phone) {
+        return customerDAO.existsByPhone(phone);
+    }
+
 }
