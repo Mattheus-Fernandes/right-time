@@ -38,13 +38,14 @@ jobs:
             -DforceStdout)
 
           echo "Project version: $VERSION"
-          echo "Branch: $GITHUB_HEAD_REF"
 
           BRANCH="$GITHUB_HEAD_REF"
 
           if [[ -z "$BRANCH" ]]; then
             BRANCH="$GITHUB_REF_NAME"
           fi
+
+          echo "Branch: $BRANCH"
 
           # ==========================================================
           # Validate SNAPSHOT / RELEASE
@@ -57,6 +58,8 @@ jobs:
               exit 1
             fi
 
+            echo "Release version $VERSION is valid."
+
           else
 
             if [[ "$VERSION" != *"-SNAPSHOT" ]]; then
@@ -64,25 +67,40 @@ jobs:
               exit 1
             fi
 
+            echo "Development version $VERSION is valid."
+
             # ========================================================
-            # Validate unique SNAPSHOT version
+            # Check if SNAPSHOT version was already used
             # ========================================================
 
             echo "Checking if SNAPSHOT version was already used..."
 
-            if git log --all --format='%H' -- pom.xml | while read COMMIT; do
+            FOUND=false
+
+            while read -r COMMIT; do
+
+              # Skip the current commit
+              if [[ "$COMMIT" == "$(git rev-parse HEAD)" ]]; then
+                continue
+              fi
+
               PREVIOUS_VERSION=$(git show "$COMMIT:pom.xml" 2>/dev/null \
-                | grep -m1 '<version>' \
-                | sed 's/.*<version>\(.*\)<\/version>.*/\1/')
+                | sed -n 's/^[[:space:]]*<version>\(.*\)<\/version>[[:space:]]*$/\1/p' \
+                | head -n 1)
 
               if [[ "$PREVIOUS_VERSION" == "$VERSION" ]]; then
                 echo "ERROR: SNAPSHOT version $VERSION was already used."
-                exit 0
+                echo "Previous commit: $COMMIT"
+                FOUND=true
+                break
               fi
-            done | grep -q "ERROR:"; then
 
-              echo "ERROR: SNAPSHOT version $VERSION was already used."
+            done < <(git log --all --format='%H' -- pom.xml)
+
+            if [[ "$FOUND" == "true" ]]; then
+              echo ""
               echo "Please increment the project version."
+              echo "Current version: $VERSION"
               exit 1
             fi
 
