@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -44,16 +46,48 @@ jobs:
             BRANCH="$GITHUB_REF_NAME"
           fi
 
+          # ==========================================================
+          # Validate SNAPSHOT / RELEASE
+          # ==========================================================
+
           if [[ "$BRANCH" == "main" ]]; then
+
             if [[ "$VERSION" == *"-SNAPSHOT" ]]; then
               echo "ERROR: main must use a release version."
               exit 1
             fi
+
           else
+
             if [[ "$VERSION" != *"-SNAPSHOT" ]]; then
               echo "ERROR: development branches must use a SNAPSHOT version."
               exit 1
             fi
+
+            # ========================================================
+            # Validate unique SNAPSHOT version
+            # ========================================================
+
+            echo "Checking if SNAPSHOT version was already used..."
+
+            if git log --all --format='%H' -- pom.xml | while read COMMIT; do
+              PREVIOUS_VERSION=$(git show "$COMMIT:pom.xml" 2>/dev/null \
+                | grep -m1 '<version>' \
+                | sed 's/.*<version>\(.*\)<\/version>.*/\1/')
+
+              if [[ "$PREVIOUS_VERSION" == "$VERSION" ]]; then
+                echo "ERROR: SNAPSHOT version $VERSION was already used."
+                exit 0
+              fi
+            done | grep -q "ERROR:"; then
+
+              echo "ERROR: SNAPSHOT version $VERSION was already used."
+              echo "Please increment the project version."
+              exit 1
+            fi
+
+            echo "SNAPSHOT version $VERSION is valid and has not been used before."
+
           fi
 
       - name: Build with Maven
