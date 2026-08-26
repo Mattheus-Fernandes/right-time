@@ -14,7 +14,7 @@ public class CustomerRepositoryImp implements CustomerRepository {
     private CustomerDAO customerDAO;
 
     @Override
-    public UUID insertNewCustomer(Customer customer) {
+    public Customer insertNewCustomer(Customer customer) {
         return customerDAO.insertNewCustomer(customer);
     }
 

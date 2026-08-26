@@ -10,8 +10,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.UUID;
-
 @Path("/customers")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,11 +20,10 @@ public class CustomerResource {
 
     @POST
     public Response createCustomer(CreateCustomerRequest request) {
-        UUID id = customerService.saveCustomer(request);
 
         return Response
                 .status(Response.Status.CREATED)
-                .entity(id)
+                .entity(customerService.saveCustomer(request))
                 .build();
     }
 }
