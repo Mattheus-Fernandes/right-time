@@ -15,8 +15,7 @@ public class CustomerDAO {
     @Inject
     private EntityManager entityManager;
 
-    @Transactional
-    public UUID insertNewCustomer(Customer customer) {
+    public Customer insertNewCustomer(Customer customer) {
 
         UUID id = UUID.randomUUID();
 
@@ -28,6 +27,8 @@ public class CustomerDAO {
                 .setParameter("phone", customer.getPhone())
                 .executeUpdate();
 
-        return id;
+        customer.setId(id);
+
+        return customer;
     }
 }
