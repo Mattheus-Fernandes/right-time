@@ -13,7 +13,7 @@ public class CustomerAlreadyExistsExceptionMapper implements ExceptionMapper<Cus
 
         return Response
                 .status(Response.Status.CONFLICT)
-                .entity(new ErrorMessage(exception.getMessage()))
+                .entity(new ErrorMessage(Response.Status.CONFLICT.getStatusCode(), exception.getMessage()))
                 .build();
     }
 }
