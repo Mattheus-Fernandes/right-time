@@ -2,17 +2,15 @@ package com.mattheusfernandes.right.time.backend.domain.entity;
 
 import com.mattheusfernandes.right.time.backend.utils.query.CustomerQuery;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.UUID;
 
 @Table(name = "customers")
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@Builder
 @NamedNativeQueries(
         @NamedNativeQuery(
                 name = CustomerQuery.INSERT_NEW_CUSTOMER,
