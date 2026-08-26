@@ -13,7 +13,7 @@ public class CustomerInvalidExceptionMapper implements ExceptionMapper<CustomerI
 
         return Response
                 .status(Response.Status.CONFLICT)
-                .entity(new ErrorMessage(Response.Status.CONFLICT.getStatusCode(), exception.getMessage()))
+                .entity(new ErrorMessage(Response.Status.BAD_REQUEST.getStatusCode(), exception.getMessage()))
                 .build();
     }
 }
