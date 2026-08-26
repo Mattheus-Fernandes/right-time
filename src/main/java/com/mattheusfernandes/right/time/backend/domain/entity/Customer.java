@@ -11,12 +11,20 @@ import java.util.UUID;
 @Entity
 @Data
 @Builder
-@NamedNativeQueries(
+@NamedNativeQueries({
         @NamedNativeQuery(
                 name = CustomerQuery.INSERT_NEW_CUSTOMER,
                 query = CustomerQuery.INSERT_NEW_CUSTOMER_QUERY
+        ),
+        @NamedNativeQuery(
+                name = CustomerQuery.EXISTS_BY_FULLNAME,
+                query = CustomerQuery.EXISTS_BY_FULLNAME_QUERY
+        ),
+        @NamedNativeQuery(
+                name = CustomerQuery.EXISTS_BY_PHONE,
+                query = CustomerQuery.EXISTS_BY_PHONE_QUERY
         )
-)
+})
 public class Customer {
 
     @Id
