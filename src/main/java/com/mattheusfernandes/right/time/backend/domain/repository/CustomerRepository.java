@@ -5,6 +5,5 @@ import com.mattheusfernandes.right.time.backend.domain.entity.Customer;
 import java.util.UUID;
 
 public interface CustomerRepository {
-
-    UUID insertNewCustomer(Customer customer);
+    Customer insertNewCustomer(Customer customer);
 }
