@@ -2,6 +2,10 @@ package com.mattheusfernandes.right.time.backend.domain.entity;
 
 import com.mattheusfernandes.right.time.backend.utils.query.CustomerQuery;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,6 +14,8 @@ import java.util.UUID;
 @Table(name = "customers")
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @NamedNativeQueries({
         @NamedNativeQuery(
